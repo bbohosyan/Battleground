@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "998450336876",
+    "firebase_url": "https://battleground-fc3d5.firebaseio.com",
+    "project_id": "battleground-fc3d5",
+    "storage_bucket": "battleground-fc3d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998450336876:android:692b0729e833fba0",
+        "android_client_info": {
+          "package_name": "com.battleground.battleground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998450336876-f0lvtl7d701hk8433dn4rjd9mrpgs490.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.battleground.battleground",
+            "certificate_hash": "859784bdb28358c1c716d87da987f6cd58babcf4"
+          }
+        },
+        {
+          "client_id": "998450336876-jl3bcum8bkin6ophiaqjmd4088iedcba.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtrj9qcsCE-N7MdnsIe0MhcPo9SFMxldg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998450336876-jl3bcum8bkin6ophiaqjmd4088iedcba.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

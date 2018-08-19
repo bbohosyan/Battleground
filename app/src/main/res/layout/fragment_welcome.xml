@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/battleground" />
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:padding="15dp"-->
+        <!--android:background="@drawable/shapeemail"-->
+        <!--android:drawableLeft="@drawable/ic_person_black_24dp"-->
+        <!--android:drawablePadding="10dp"-->
+        <!--android:hint="Email"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textColorHint="@color/white"-->
+        <!--android:textColorHighlight="@color/white"/>-->
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="10dp"-->
+        <!--android:padding="15dp"-->
+        <!--android:background="@drawable/shapeemail"-->
+        <!--android:drawableLeft="@drawable/ic_lock_black_24dp"-->
+        <!--android:drawablePadding="10dp"-->
+        <!--android:hint="Password"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textColorHint="@color/white"-->
+        <!--android:textColorHighlight="@color/white"/>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<CheckBox-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Remember Me"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginTop="0dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:buttonTint="@color/white"-->
+            <!--android:checked="true"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Forget Password"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginTop="0dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:drawableLeft="@drawable/ic_lock_open_black_24dp"-->
+            <!--android:drawablePadding="6dp"-->
+            <!--android:padding="4dp"/>-->
+
+
+    <!--</LinearLayout>-->
+
+    <Button
+        android:id="@+id/welcome_button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Log In"
+        android:shadowColor="@android:color/transparent"
+        android:padding="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/shapelogin"/>
+
+    <Button
+        android:id="@+id/welcome_button_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/shapesignup"
+        android:padding="15dp"
+        android:shadowColor="@android:color/transparent"
+        android:text="Sign Up" />
+
+
+
+
+</LinearLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:context=".fragments.WelcomeFragment">-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/welcome_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="100dp"-->
+        <!--android:text="@string/app_name"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:textSize="40sp" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/welcome_button_login"-->
+        <!--android:text="LOGIN"-->
+        <!--android:layout_marginTop="400dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:textColor="#000000"-->
+        <!--android:layout_marginStart="50dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+    <!--<Button-->
+        <!--android:id="@+id/welcome_button_register"-->
+        <!--android:text="REGISTER"-->
+        <!--android:layout_marginTop="400dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:layout_marginEnd="50dp"-->
+        <!--android:textColor="#000000"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content" />-->
+
+<!--</RelativeLayout>-->

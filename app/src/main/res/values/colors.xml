@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="red">#0083A7</color>
+    <color name="white">#ffffff</color>
+    <color name="colorAccent">#ffffff</color>
+    <color name="gradient"><gradient xmlns:android="http://schemas.android.com/apk/res/android"
+        android:startColor="#FFFFFF"
+        android:centerColor="#0000FF"
+        android:endColor="#00FFFF"
+        android:angle="145"
+        android:startX="30"
+        android:endX="70"
+        android:startY="30"
+        android:endY="70"
+        android:type="linear"/></color>
 </resources>
