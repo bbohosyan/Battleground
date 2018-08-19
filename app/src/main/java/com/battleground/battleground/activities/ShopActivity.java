@@ -56,19 +56,21 @@ public class ShopActivity extends AppCompatActivity implements Navigator {
         );
 
         NavigationView navigationView = findViewById(R.id.activity_overview_nav_view);
-        navigationView.setCheckedItem(R.id.nav_profile);
+        navigationView.setCheckedItem(R.id.nav_shop);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         // set item as selected to persist highlight
-                        menuItem.setChecked(true);
                         switch (menuItem.getItemId()){
                             case R.id.nav_profile:
                                 navigateToOverviewActivity();
                                 break;
                             case R.id.nav_shop:
                                 navigateToShopActivity();
+                                break;
+                            case R.id.nav_battle:
+                                navigateToBattleActivity();
                                 break;
                         }
                         // close drawer when item is tapped
@@ -157,6 +159,12 @@ public class ShopActivity extends AppCompatActivity implements Navigator {
     @Override
     public void navigateToShopActivity() {
         Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToBattleActivity() {
+        Intent intent = new Intent(this, BattleActivity.class);
         startActivity(intent);
     }
 }

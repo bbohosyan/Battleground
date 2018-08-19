@@ -9,4 +9,5 @@ public interface Navigator {
     void navigateToWelcomeActivity();
     void navigateToChooseTeamActivity();
     void navigateToShopActivity();
+    void navigateToBattleActivity();
 }

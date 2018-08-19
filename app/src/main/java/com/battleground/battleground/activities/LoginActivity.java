@@ -72,4 +72,10 @@ public class LoginActivity extends AppCompatActivity implements Navigator {
         Intent intent = new Intent(this, ShopActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void navigateToBattleActivity() {
+        Intent intent = new Intent(this, BattleActivity.class);
+        startActivity(intent);
+    }
 }

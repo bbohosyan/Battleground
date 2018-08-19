@@ -28,7 +28,7 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.activity_battle_drawer);
         mDrawerLayout.addDrawerListener(
                 new DrawerLayout.DrawerListener() {
                     @Override
@@ -53,8 +53,8 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
                 }
         );
 
-        NavigationView navigationView = findViewById(R.id.activity_overview_nav_view);
-        navigationView.setCheckedItem(R.id.nav_profile);
+        NavigationView navigationView = findViewById(R.id.activity_battle_nav_view);
+        navigationView.setCheckedItem(R.id.nav_battle);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -68,6 +68,9 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
                                 break;
                             case R.id.nav_shop:
                                 navigateToShopActivity();
+                                break;
+                            case R.id.nav_battle:
+                                navigateToBattleActivity();
                                 break;
                         }
                         mDrawerLayout.closeDrawers();
@@ -93,7 +96,7 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
 
         BattleFragment chooseTeamFragment = BattleFragment.instance();
         chooseTeamFragment.setNavigator(this);
-        getSupportFragmentManager().beginTransaction().replace(R.id.choose_team_layout, chooseTeamFragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.activity_battle_layout, chooseTeamFragment).commit();
     }
 
     @Override
@@ -130,6 +133,12 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
     @Override
     public void navigateToShopActivity() {
         Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToBattleActivity() {
+        Intent intent = new Intent(this, BattleActivity.class);
         startActivity(intent);
     }
 

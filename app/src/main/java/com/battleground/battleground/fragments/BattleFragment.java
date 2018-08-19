@@ -2,7 +2,9 @@ package com.battleground.battleground.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +50,17 @@ public class BattleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
+
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fragment_battle_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                mDrawerLayout = getActivity().findViewById(R.id.activity_battle_drawer);
+                mDrawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
 
         return view;
     }

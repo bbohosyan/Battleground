@@ -74,6 +74,9 @@ public class OverviewActivity extends AppCompatActivity implements Navigator {
                             case R.id.nav_shop:
                                 navigateToShopActivity();
                                 break;
+                            case R.id.nav_battle:
+                                navigateToBattleActivity();
+                                break;
                         }
                         mDrawerLayout.closeDrawers();
 
@@ -159,6 +162,12 @@ public class OverviewActivity extends AppCompatActivity implements Navigator {
     @Override
     public void navigateToShopActivity() {
         Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void navigateToBattleActivity() {
+        Intent intent = new Intent(this, BattleActivity.class);
         startActivity(intent);
     }
 }
