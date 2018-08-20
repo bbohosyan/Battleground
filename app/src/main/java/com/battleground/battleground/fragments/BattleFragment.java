@@ -1,8 +1,5 @@
 package com.battleground.battleground.fragments;
 
-
-import android.media.Image;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.battleground.battleground.R;
 import com.battleground.battleground.activities.BattleActivity;
@@ -28,16 +24,10 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -49,11 +39,9 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     private Navigator navigator;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private DatabaseReference myRef2;
     private String userID;
-    private static Bundle mExtras;
     private DrawerLayout mDrawerLayout;
     private User mUser;
     private Integer opponentStrength;
@@ -75,7 +63,6 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_battle, container, false);
 
         mAuth = FirebaseAuth.getInstance();
@@ -100,11 +87,7 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 showData2(dataSnapshot);
-                //Toast.makeText(getContext(), String.valueOf(users.size()), Toast.LENGTH_SHORT).show();
                 List<User> givenList = new ArrayList<>();
-//                for (int i = 0; i < users.size(); i++){
-//                    Toast.makeText(getContext(), String.valueOf(users.get(i)), Toast.LENGTH_SHORT).show();
-//                }
                 givenList = users.stream().map(user1 -> (User) user1).filter(user1 -> !mUser.getTeam().equals(user1.getTeam())).collect(Collectors.toList());
                 Random rand = new Random();
                 User randomElement = givenList.get(rand.nextInt(givenList.size()));
@@ -147,15 +130,10 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fragment_battle_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                mDrawerLayout = getActivity().findViewById(R.id.activity_battle_drawer);
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            }
+        FloatingActionButton fab = view.findViewById(R.id.fragment_battle_fab);
+        fab.setOnClickListener(view1 -> {
+            mDrawerLayout = getActivity().findViewById(R.id.activity_battle_drawer);
+            mDrawerLayout.openDrawer(GravityCompat.START);
         });
 
         mBattle = view.findViewById(R.id.fragment_battle_battleButton);
