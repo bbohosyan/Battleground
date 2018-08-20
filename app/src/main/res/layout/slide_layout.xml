@@ -1,25 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="IRON MAN"
+        android:textStyle="italic"
+        android:textColor="@color/red"
+        android:textFontWeight="900"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <ImageView
+        android:layout_marginTop="20dp"
         android:id="@+id/slide_image"
-        android:src="@drawable/ic_shopping_cart_black_24dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="250dp"
+        android:src="@drawable/ic_shopping_cart_black_24dp" />
 
     <Button
         android:id="@+id/buy_hero_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/shapelogin"
         android:padding="15dp"
         android:shadowColor="@android:color/transparent"
         android:text="Buy for 5000" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="This is iron man. He is very powerful. He is red and his real name is not iron man."
+        android:textStyle="italic"
+        android:textColor="@color/red"
+        android:textFontWeight="900"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:text="This is iron man. He is very powerful. He is red and his real name is not iron man."
+        android:textStyle="italic"
+        android:textColor="@color/red"
+        android:textFontWeight="900"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:background="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

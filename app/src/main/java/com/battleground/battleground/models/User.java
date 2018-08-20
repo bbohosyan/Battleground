@@ -17,11 +17,13 @@ public class User implements Serializable {
     private long yearsUser;
     private String dateUserRegistered;
     private long gold;
+    private String email;
 
     public User() {
     }
 
-    public User(Gender gender, String birthday) {
+    public User(String email, Gender gender, String birthday) {
+        setEmail(email);
         setGender(gender);
         setHeroes(new HashMap<String, Hero>());
         heroes.put("Spiderman", new Hero("Spiderman", Hero.SPIDERMAN_ATTACK, Hero.SPIDERMAN_DEFENCE));
@@ -32,6 +34,14 @@ public class User implements Serializable {
         setDateUserRegistered(LocalDate.now().toString());
         setGold(5000);
         setStatistics(new Statistics());
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Statistics getStatistics() {

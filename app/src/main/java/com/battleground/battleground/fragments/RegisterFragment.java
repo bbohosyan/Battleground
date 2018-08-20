@@ -171,7 +171,7 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         mProgressBar.setVisibility(View.GONE);
                         if (task.isSuccessful()) {
-                            final User user = new User(Gender.valueOf(mGenderSpinner.getSelectedItem().toString()), LocalDate.of(datePickerDialog.getDatePicker().getYear(), datePickerDialog.getDatePicker().getMonth(), datePickerDialog.getDatePicker().getDayOfMonth()).toString());
+                            final User user = new User(mAuth.getCurrentUser().getEmail(), Gender.valueOf(mGenderSpinner.getSelectedItem().toString()), LocalDate.of(datePickerDialog.getDatePicker().getYear(), datePickerDialog.getDatePicker().getMonth(), datePickerDialog.getDatePicker().getDayOfMonth()).toString());
                             //Log.d("GENDER", user.getGender().toString());
                             mFirebaseDatabase.getReference("Users")
                                     .child(mAuth.getCurrentUser().getUid())

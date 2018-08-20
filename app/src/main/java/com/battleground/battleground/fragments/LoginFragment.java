@@ -144,7 +144,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private void setCurrentUser(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             currentUser = ds.child(userID).getValue(User.class);
-            currentUser.setGender(currentUser.getGender());
         }
     }
 

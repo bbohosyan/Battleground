@@ -155,7 +155,7 @@ public class OverviewFragment extends Fragment {
             int yearUserRegistered = Integer.parseInt(dateUserRegistered[0]);
             int monthUserRegistered = Integer.parseInt(dateUserRegistered[1]);
             int dayUserRegistered = Integer.parseInt(dateUserRegistered[2]);
-            mDaysSinceRegisteredTextView.setText("Days since registration: " + String.valueOf(ChronoUnit.YEARS.between(LocalDate.of(yearUserRegistered, monthUserRegistered, dayUserRegistered), LocalDate.now())) + " days");
+            mDaysSinceRegisteredTextView.setText("Days since registration: " + String.valueOf(ChronoUnit.DAYS.between(LocalDate.of(yearUserRegistered, monthUserRegistered, dayUserRegistered), LocalDate.now())) + " days");
 
             mGender.setText("Gender: " + mUser.getGender().toString().charAt(0));
 
