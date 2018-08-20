@@ -1,4 +1,4 @@
-### This is game application made on Android and using Firebase Firestore Database. It's purpose is to improve my Android and Firebase skills.  
+####Battleground ### This is game application made on Android and using Firebase Firestore Database. It's purpose is to improve my Android and Firebase skills.  
 
 # Contributors: 
 - Borislav Bohosyan (*siqqQ*) 
