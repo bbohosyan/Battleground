@@ -49,6 +49,8 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
     private Button mBattle;
     private int chanceToWinPercent;
     private TextView mResultText;
+    private TextView mChanceToWin;
+    private TextView mOpponentEmail;
 
     public BattleFragment() {
         // Required empty public constructor
@@ -91,35 +93,35 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
                 givenList = users.stream().map(user1 -> (User) user1).filter(user1 -> !mUser.getTeam().equals(user1.getTeam())).collect(Collectors.toList());
                 Random rand = new Random();
                 User randomElement = givenList.get(rand.nextInt(givenList.size()));
-                TextView textView = view.findViewById(R.id.fragment_battle_opponentEmail);
-                textView.setText(randomElement.getEmail());
+                mOpponentEmail = view.findViewById(R.id.fragment_battle_opponentEmail);
+                mOpponentEmail.setText(randomElement.getEmail());
                 ImageView imageView = view.findViewById(R.id.fragment_battle_opponent);
                 if (mUser.getTeam().equals(Team.SUPERVILLAINS)) {
                     imageView.setImageResource(R.drawable.superheroes);
                 } else {
                     imageView.setImageResource(R.drawable.supervillains);
                 }
-                TextView chanceToWin = view.findViewById(R.id.fragment_battle_chanceToWin);
+                mChanceToWin = view.findViewById(R.id.fragment_battle_chanceToWin);
                 opponentStrength = randomElement.getStrength();
                 int difference = mUser.getStrength() - opponentStrength;
                 if (difference == 0) {
                     chanceToWinPercent = 50;
-                    chanceToWin.setText("Chance to win: 50%");
+                    mChanceToWin.setText("Chance to win: 50%");
                 } else if (difference > 0) {
                     if (difference >= 50) {
                         chanceToWinPercent = 100;
-                        chanceToWin.setText("Chance to win: 100%");
+                        mChanceToWin.setText("Chance to win: 100%");
                     } else {
                         chanceToWinPercent = 50 + difference;
-                        chanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
+                        mChanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
                     }
                 } else {
                     if (difference <= -50) {
                         chanceToWinPercent = 100;
-                        chanceToWin.setText("Chance to win: 0%");
+                        mChanceToWin.setText("Chance to win: 0%");
                     } else {
                         chanceToWinPercent = 50 + difference;
-                        chanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
+                        mChanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
                     }
                 }
             }
@@ -169,13 +171,14 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         mResultText.setVisibility(View.VISIBLE);
         mUser.getStatistics().setDamageDealt(mUser.getStrength());
         mUser.getStatistics().setBattles(mUser.getStatistics().getBattles() + 1);
-        if (number <= chanceToWinPercent){
+        mBattle.setVisibility(View.GONE);
+        mChanceToWin.setVisibility(View.GONE);
+        mOpponentEmail.setVisibility(View.GONE);
+        if (number >= chanceToWinPercent){
             mUser.getStatistics().setGoldWon(mUser.getStatistics().getGoldWon() + 5000);
-            mBattle.setVisibility(View.GONE);
             mResultText.setText("YOU WON!");
         }
         else {
-            mBattle.setVisibility(View.GONE);
             mResultText.setText("YOU LOST!");
         }
         mFirebaseDatabase.getReference("Users")
