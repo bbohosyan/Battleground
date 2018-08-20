@@ -40,7 +40,7 @@ public class OverviewActivity extends AppCompatActivity implements Navigator {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
