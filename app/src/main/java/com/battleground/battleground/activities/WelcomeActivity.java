@@ -39,7 +39,6 @@ public class WelcomeActivity extends AppCompatActivity implements Navigator {
     @Override
     public void navigateToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
