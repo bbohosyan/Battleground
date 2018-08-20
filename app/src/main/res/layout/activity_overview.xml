@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
+    app:itemIconTint="@color/blue2"
+    app:itemTextColor="@color/green2"
+    app:itemBackground="@color/red2"
     tools:context=".activities.LoginActivity">
 
     <FrameLayout
@@ -30,6 +33,9 @@
 
     <!-- Container for contents of drawer - use NavigationView to make configuration easier -->
     <android.support.design.widget.NavigationView
+        app:itemBackground="@color/white"
+        app:itemTextColor="@color/darkRed"
+        android:background="@color/darkRed"
         android:id="@+id/activity_overview_nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

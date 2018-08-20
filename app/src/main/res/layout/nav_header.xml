@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="192dp"
-    android:background="?attr/colorPrimaryDark"
+    android:background="@drawable/marvel"
     android:padding="16dp"
     android:id="@+id/nav_header_layout"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
@@ -11,9 +11,13 @@
 
     <TextView
         android:id="@+id/nav_head_text"
-        android:textColor="@color/red"
+        android:textColor="#500701"
+        android:textStyle="italic|bold"
+        android:textAlignment="center"
         android:layout_width="match_parent"
+        android:background="#ffffff"
         android:layout_height="wrap_content"
+        android:textSize="20dp"
         android:text="My header title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 

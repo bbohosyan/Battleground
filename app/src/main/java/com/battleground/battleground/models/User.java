@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String dateUserRegistered;
     private long gold;
     private String email;
+    private int strength;
 
     public User() {
     }
@@ -26,14 +27,22 @@ public class User implements Serializable {
         setEmail(email);
         setGender(gender);
         setHeroes(new HashMap<String, Hero>());
-        heroes.put("Spiderman", new Hero("Spiderman", Hero.SPIDERMAN_ATTACK, Hero.SPIDERMAN_DEFENCE));
+        heroes.put(Hero.WONDERWOMAN_NAME, new Hero(Hero.WONDERWOMAN_NAME, Hero.WONDERWOMAN_ATTACK, Hero.WONDERWOMAN_DEFENCE));
         setClan(null);
         setTeam(Team.NOT_SET);
         setAge(birthday);
         setYearsUserH(birthday);
         setDateUserRegistered(LocalDate.now().toString());
-        setGold(5000);
+        setGold(1000000);
         setStatistics(new Statistics());
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
     }
 
     public String getEmail() {

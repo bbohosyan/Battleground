@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -96,6 +97,7 @@ public class OverviewActivity extends AppCompatActivity implements Navigator {
 
         mAuth = FirebaseAuth.getInstance();
         navUsername.setText(mAuth.getCurrentUser().getEmail().toString());
+
 
         mDrawerLayout.bringToFront();
         OverviewFragment overviewFragment = OverviewFragment.instance(getIntent().getExtras());

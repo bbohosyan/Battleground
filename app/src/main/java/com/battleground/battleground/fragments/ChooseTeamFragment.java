@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.battleground.battleground.R;
+import com.battleground.battleground.models.Hero;
 import com.battleground.battleground.models.Navigator;
 import com.battleground.battleground.models.Team;
 import com.battleground.battleground.models.User;
@@ -96,6 +97,8 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
 
     private void clickSupervillainsImage() {
         currentUser.setTeam(Team.SUPERVILLAINS);
+        currentUser.getHeroes().remove(Hero.WONDERWOMAN_NAME);
+        currentUser.getHeroes().put(Hero.JOKER_NAME, new Hero(Hero.JOKER_NAME, Hero.JOKER_ATTACK, Hero.JOKER_DEFENCE));
         mFirebaseDatabase.getReference("Users")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(currentUser);
@@ -104,6 +107,7 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
 
     private void clickSuperheroesImage() {
         currentUser.setTeam(Team.SUPERHEROES);
+        currentUser.setStrength(currentUser.getHeroes().get("WONDER WOMAN").attack + currentUser.getHeroes().get("WONDER WOMAN").defence);
         mFirebaseDatabase.getReference("Users")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(currentUser);

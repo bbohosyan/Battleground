@@ -1,12 +1,12 @@
 package com.battleground.battleground.models;
 
 public class Hero {
-    public static final int SPIDERMAN_ATTACK = 1;
-    public static final int SPIDERMAN_DEFENCE = 3;
-    public static final int BATMAN_ATTACK = 2;
-    public static final int BATMAN_DEFENCE = 2;
-    public static final int WONDERWOMAN_ATTACK = 4;
+    public static final String WONDERWOMAN_NAME = "WONDER_WOMAN";
+    public static final int WONDERWOMAN_ATTACK = 2;
     public static final int WONDERWOMAN_DEFENCE = 0;
+    public static final String JOKER_NAME = "JOKER";
+    public static final int JOKER_ATTACK = 1;
+    public static final int JOKER_DEFENCE = 1;
     public String name;
     public int attack;
     public int defence;

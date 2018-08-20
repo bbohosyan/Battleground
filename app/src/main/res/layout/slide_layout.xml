@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/slide_layout_name"
         android:text="IRON MAN"
         android:textStyle="italic"
         android:textColor="@color/red"
@@ -36,12 +37,13 @@
         android:text="Buy for 5000" />
 
     <TextView
+        android:id="@+id/slide_layout_description"
         android:layout_marginTop="20dp"
         android:text="This is iron man. He is very powerful. He is red and his real name is not iron man."
         android:textStyle="italic"
         android:textColor="@color/red"
         android:textFontWeight="900"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textAlignment="center"
         android:layout_gravity="center"
         android:background="#ffffff"
@@ -49,6 +51,7 @@
         android:layout_height="wrap_content" />
 
     <TextView
+        android:id="@+id/slide_layout_description2"
         android:layout_marginTop="20dp"
         android:text="This is iron man. He is very powerful. He is red and his real name is not iron man."
         android:textStyle="italic"

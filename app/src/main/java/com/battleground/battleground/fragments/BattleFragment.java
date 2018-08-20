@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ import java.util.stream.Collectors;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BattleFragment extends Fragment {
+public class BattleFragment extends Fragment implements View.OnClickListener {
 
     private Navigator navigator;
     private FirebaseDatabase mFirebaseDatabase;
@@ -55,7 +56,11 @@ public class BattleFragment extends Fragment {
     private static Bundle mExtras;
     private DrawerLayout mDrawerLayout;
     private User mUser;
+    private Integer opponentStrength;
     private List<User> users;
+    private Button mBattle;
+    private int chanceToWinPercent;
+    private TextView mResultText;
 
     public BattleFragment() {
         // Required empty public constructor
@@ -100,17 +105,39 @@ public class BattleFragment extends Fragment {
 //                for (int i = 0; i < users.size(); i++){
 //                    Toast.makeText(getContext(), String.valueOf(users.get(i)), Toast.LENGTH_SHORT).show();
 //                }
-                givenList = users.stream().map(user1 -> (User)user1).filter(user1 -> !mUser.getTeam().equals(user1.getTeam())).collect(Collectors.toList());
+                givenList = users.stream().map(user1 -> (User) user1).filter(user1 -> !mUser.getTeam().equals(user1.getTeam())).collect(Collectors.toList());
                 Random rand = new Random();
                 User randomElement = givenList.get(rand.nextInt(givenList.size()));
                 TextView textView = view.findViewById(R.id.fragment_battle_opponentEmail);
                 textView.setText(randomElement.getEmail());
                 ImageView imageView = view.findViewById(R.id.fragment_battle_opponent);
-                if (mUser.getTeam().equals(Team.SUPERVILLAINS)){
+                if (mUser.getTeam().equals(Team.SUPERVILLAINS)) {
                     imageView.setImageResource(R.drawable.superheroes);
-                }
-                else {
+                } else {
                     imageView.setImageResource(R.drawable.supervillains);
+                }
+                TextView chanceToWin = view.findViewById(R.id.fragment_battle_chanceToWin);
+                opponentStrength = randomElement.getStrength();
+                int difference = mUser.getStrength() - opponentStrength;
+                if (difference == 0) {
+                    chanceToWinPercent = 50;
+                    chanceToWin.setText("Chance to win: 50%");
+                } else if (difference > 0) {
+                    if (difference >= 50) {
+                        chanceToWinPercent = 100;
+                        chanceToWin.setText("Chance to win: 100%");
+                    } else {
+                        chanceToWinPercent = 50 + difference;
+                        chanceToWin.setText("Chance to win: " + String.valueOf(50 + difference) + "%");
+                    }
+                } else {
+                    if (difference <= -50) {
+                        chanceToWinPercent = 100;
+                        chanceToWin.setText("Chance to win: 100%");
+                    } else {
+                        chanceToWinPercent = 50 - difference;
+                        chanceToWin.setText("Chance to win: " + String.valueOf(50 - difference) + "%");
+                    }
                 }
             }
 
@@ -131,6 +158,12 @@ public class BattleFragment extends Fragment {
             }
         });
 
+        mBattle = view.findViewById(R.id.fragment_battle_battleButton);
+        mBattle.setOnClickListener(this);
+
+        mResultText = view.findViewById(R.id.fragment_battle_resultBattleMessage);
+        mResultText.setVisibility(View.GONE);
+
         return view;
     }
 
@@ -149,5 +182,20 @@ public class BattleFragment extends Fragment {
 
     public void setNavigator(BattleActivity navigator) {
         this.navigator = navigator;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Random rand = new Random();
+        int number = rand.nextInt(101);
+        mResultText.setVisibility(View.VISIBLE);
+        if (number <= chanceToWinPercent){
+            mBattle.setVisibility(View.GONE);
+            mResultText.setText("YOU WON!");
+        }
+        else {
+            mBattle.setVisibility(View.GONE);
+            mResultText.setText("YOU LOST!");
+        }
     }
 }
