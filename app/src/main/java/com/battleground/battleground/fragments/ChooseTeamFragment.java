@@ -36,17 +36,14 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private String userID;
-    private static Bundle mExtras;
     private User currentUser;
 
     public ChooseTeamFragment() {
         // Required empty public constructor
     }
 
-    public static ChooseTeamFragment instance(Bundle bundle) {
+    public static ChooseTeamFragment instance() {
         ChooseTeamFragment chooseTeamFragment = new ChooseTeamFragment();
-
-        mExtras = bundle;
 
         return chooseTeamFragment;
     }
@@ -107,7 +104,7 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
 
     private void clickSuperheroesImage() {
         currentUser.setTeam(Team.SUPERHEROES);
-        currentUser.setStrength(currentUser.getHeroes().get("WONDER WOMAN").attack + currentUser.getHeroes().get("WONDER WOMAN").defence);
+        currentUser.setStrength(currentUser.getHeroes().get(Hero.WONDERWOMAN_NAME).attack + currentUser.getHeroes().get(Hero.WONDERWOMAN_NAME).defence);
         mFirebaseDatabase.getReference("Users")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(currentUser);

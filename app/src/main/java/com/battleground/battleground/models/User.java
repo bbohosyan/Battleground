@@ -35,6 +35,7 @@ public class User implements Serializable {
         setDateUserRegistered(LocalDate.now().toString());
         setGold(1000000);
         setStatistics(new Statistics());
+        setStrength(2);
     }
 
     public int getStrength() {

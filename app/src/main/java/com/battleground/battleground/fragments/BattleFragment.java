@@ -111,15 +111,15 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
                         chanceToWin.setText("Chance to win: 100%");
                     } else {
                         chanceToWinPercent = 50 + difference;
-                        chanceToWin.setText("Chance to win: " + String.valueOf(50 + difference) + "%");
+                        chanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
                     }
                 } else {
                     if (difference <= -50) {
                         chanceToWinPercent = 100;
-                        chanceToWin.setText("Chance to win: 100%");
+                        chanceToWin.setText("Chance to win: 0%");
                     } else {
-                        chanceToWinPercent = 50 - difference;
-                        chanceToWin.setText("Chance to win: " + String.valueOf(50 - difference) + "%");
+                        chanceToWinPercent = 50 + difference;
+                        chanceToWin.setText("Chance to win: " + String.valueOf(chanceToWinPercent) + "%");
                     }
                 }
             }

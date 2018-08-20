@@ -15,7 +15,7 @@ public class ChooseTeamActivity extends AppCompatActivity implements Navigator {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_team);
-        ChooseTeamFragment chooseTeamFragment = ChooseTeamFragment.instance(getIntent().getExtras());
+        ChooseTeamFragment chooseTeamFragment = ChooseTeamFragment.instance();
         chooseTeamFragment.setNavigator(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.choose_team_layout, chooseTeamFragment).commit();
     }
