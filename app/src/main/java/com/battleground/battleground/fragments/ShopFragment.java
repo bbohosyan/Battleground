@@ -11,9 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.battleground.battleground.R;
@@ -33,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ShopFragment extends Fragment implements View.OnClickListener {
+public class ShopFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private Navigator navigator;
@@ -45,7 +42,6 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
     private User mUser;
     private String userID;
     private FirebaseDatabase mFirebaseDatabase;
-    private Button button;
 
     public ShopFragment() {
         // Required empty public constructor
@@ -60,7 +56,6 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_shop, container, false);
 
         mSlideViewPager = view.findViewById(R.id.slideViewPager);
@@ -68,15 +63,10 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
         sliderAdapterSuperHeroes = new SliderAdapterSuperHeroes(getContext());
         sliderAdapterSuperVillains = new SliderAdapterSuperVillains(getContext());
 
-        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fragment_shop_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                mDrawerLayout = getActivity().findViewById(R.id.activity_shop_drawer);
-                mDrawerLayout.openDrawer(GravityCompat.START);
-            }
+        FloatingActionButton fab = view.findViewById(R.id.fragment_shop_fab);
+        fab.setOnClickListener(view1 -> {
+            mDrawerLayout = getActivity().findViewById(R.id.activity_shop_drawer);
+            mDrawerLayout.openDrawer(GravityCompat.START);
         });
 
         mAuth = FirebaseAuth.getInstance();
@@ -113,17 +103,5 @@ public class ShopFragment extends Fragment implements View.OnClickListener {
 
     public void setNavigator(Navigator navigator) {
         this.navigator = navigator;
-    }
-
-    public void buyHero() {
-        mUser.setGold(mUser.getGold() - 5000);
-        mFirebaseDatabase.getReference("Users")
-                .child(mAuth.getCurrentUser().getUid())
-                .setValue(mUser);
-    }
-
-    @Override
-    public void onClick(View view) {
-        Toast.makeText(getContext(), "KURVII", Toast.LENGTH_SHORT).show();
     }
 }
