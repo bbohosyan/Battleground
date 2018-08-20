@@ -8,8 +8,6 @@ import android.view.View;
 import com.battleground.battleground.R;
 import com.battleground.battleground.fragments.LoginFragment;
 import com.battleground.battleground.models.Navigator;
-import com.battleground.battleground.models.User;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity implements Navigator {
 
@@ -39,7 +37,6 @@ public class LoginActivity extends AppCompatActivity implements Navigator {
     @Override
     public void navigateToLoginActivity() {
         Intent intent = new Intent(this, LoginActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
