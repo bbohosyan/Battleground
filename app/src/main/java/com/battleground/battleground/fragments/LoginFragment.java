@@ -18,9 +18,6 @@ import com.battleground.battleground.R;
 import com.battleground.battleground.models.Navigator;
 import com.battleground.battleground.models.Team;
 import com.battleground.battleground.models.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
@@ -47,7 +44,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private String userID;
-    private static Bundle mExtras;
     private User currentUser;
 
     public LoginFragment() {
@@ -62,7 +58,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
         mAuth = FirebaseAuth.getInstance();
@@ -97,46 +92,37 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         mPassword = mEditTextPassword.getText().toString().trim();
         mProgressBar.setVisibility(View.VISIBLE);
         mAuth.signInWithEmailAndPassword(mEmail, mPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        mProgressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            if (currentUser != null && currentUser.getTeam() != Team.NOT_SET) {
-                                navigator.navigateToOverviewActivity();
-                                Log.d("HELLO", "HELLO");
-                            }
-                            else {
-                                navigator.navigateToChooseTeamActivity();
-                            }
-                            Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                            // Sign in success, update UI with the signed-in user's information
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
-                                Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
-                                Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
-
-                            }
+                .addOnCompleteListener(task -> {
+                    mProgressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        if (currentUser != null && currentUser.getTeam() != Team.NOT_SET) {
+                            navigator.navigateToOverviewActivity();
+                            Log.d("HELLO", "HELLO");
                         }
-                        // ...
+                        else {
+                            navigator.navigateToChooseTeamActivity();
+                        }
+                        Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        if (task.getException() instanceof FirebaseAuthInvalidCredentialsException){
+                            Toast.makeText(getContext(), "Invalid email or password", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 });
     }
 
     private void setAuthListener() {
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
-                }
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
             }
         };
     }
