@@ -34,10 +34,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
-
-//import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,9 +52,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     private Spinner mGenderSpinner;
     private TextView mBirthDateTextView;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private int yearOfBirth;
-    private int monthOfBirth;
-    private int dayOfBirth;
     private FirebaseDatabase mFirebaseDatabase;
     private DatePickerDialog datePickerDialog;
 
@@ -73,7 +67,6 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
         mEditTextEmail = view.findViewById(R.id.register_email);
@@ -86,19 +79,12 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 getContext(),R.layout.spinner_item, new String[]{Gender.FEMALE.toString(), Gender.MALE.toString()}
         );
-//        spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         mGenderSpinner.setAdapter(spinnerArrayAdapter);
 
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                month += 1;
-                String date = month + "/" + day + "/" + year;
-                yearOfBirth = year;
-                monthOfBirth = month;
-                dayOfBirth = day;
-                mBirthDateTextView.setText(date);
-            }
+        mDateSetListener = (datePicker, year, month, day) -> {
+            month += 1;
+            String date = month + "/" + day + "/" + year;
+            mBirthDateTextView.setText(date);
         };
         mBirthDateTextView = view.findViewById(R.id.register_date);
         mBirthDateTextView.setOnClickListener(this);
@@ -166,37 +152,28 @@ public class RegisterFragment extends Fragment implements View.OnClickListener {
         }
         mProgressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(mEmail, mPassword)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        mProgressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            final User user = new User(mAuth.getCurrentUser().getEmail(), Gender.valueOf(mGenderSpinner.getSelectedItem().toString()), LocalDate.of(datePickerDialog.getDatePicker().getYear(), datePickerDialog.getDatePicker().getMonth(), datePickerDialog.getDatePicker().getDayOfMonth()).toString());
-                            //Log.d("GENDER", user.getGender().toString());
-                            mFirebaseDatabase.getReference("Users")
-                                    .child(mAuth.getCurrentUser().getUid())
-                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
+                .addOnCompleteListener(task -> {
+                    mProgressBar.setVisibility(View.GONE);
+                    if (task.isSuccessful()) {
+                        final User user = new User(mAuth.getCurrentUser().getEmail(), Gender.valueOf(mGenderSpinner.getSelectedItem().toString()), LocalDate.of(datePickerDialog.getDatePicker().getYear(), datePickerDialog.getDatePicker().getMonth(), datePickerDialog.getDatePicker().getDayOfMonth()).toString());
+                        mFirebaseDatabase.getReference("Users")
+                                .child(mAuth.getCurrentUser().getUid())
+                                .setValue(user).addOnCompleteListener(task1 -> {
+                                    if (task1.isSuccessful()){
                                         navigator.navigateToChooseTeamActivity();
-                                        Toast.makeText(getContext(), "LIMONADAAA", Toast.LENGTH_SHORT).show();
                                     }
                                     else {
-                                        Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getContext(), task1.getException().toString(), Toast.LENGTH_SHORT).show();
 
                                     }
-                                }
-                            });
-                            //navigator.navigateToOverviewActivity(mAuth.getCurrentUser());
+                                });
+                    } else {
+                        if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
+                            Toast.makeText(getContext(), "Password should have more than 5 characters", Toast.LENGTH_SHORT).show();
+                        } else if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                            Toast.makeText(getContext(), "You are already registered", Toast.LENGTH_SHORT).show();
                         } else {
-                            if (task.getException() instanceof FirebaseAuthWeakPasswordException) {
-                                Toast.makeText(getContext(), "Password should have more than 5 characters", Toast.LENGTH_SHORT).show();
-                            } else if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                Toast.makeText(getContext(), "You are already registered", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
