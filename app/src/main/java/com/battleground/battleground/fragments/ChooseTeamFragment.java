@@ -52,7 +52,6 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_choose_team, container, false);
 
         mAuth = FirebaseAuth.getInstance();
@@ -112,15 +111,12 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
     }
 
     private void setAuthListener() {
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
-                }
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                Toast.makeText(getContext(), "SUCCESS", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "ERROR", Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -128,7 +124,6 @@ public class ChooseTeamFragment extends Fragment implements View.OnClickListener
     private void setCurrentUser(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
             currentUser = ds.child(userID).getValue(User.class);
-            //currentUser.setGender(currentUser.getGender());
         }
     }
 
