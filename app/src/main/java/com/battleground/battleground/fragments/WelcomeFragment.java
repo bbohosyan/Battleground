@@ -20,8 +20,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     private Navigator navigator;
     private Button mLoginButton;
     private Button mRegisterButton;
-    private Button mLoginButtonText;
-    private Button mRegisterButtonText;
 
 
     public WelcomeFragment() {
@@ -36,7 +34,6 @@ public class WelcomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_welcome, container, false);
         mLoginButton = view.findViewById(R.id.welcome_button_login);
         mLoginButton.setOnClickListener(this);
