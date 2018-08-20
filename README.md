@@ -7,6 +7,6 @@
 
 
 # Class Diagram
-...
+ https://github.com/siqqQ/Battleground/blob/master/app/src/main/res/drawable-v24/diagram.PNG
 
  - ## [GitHub Page](https://github.com/siqqQ/Battleground)
