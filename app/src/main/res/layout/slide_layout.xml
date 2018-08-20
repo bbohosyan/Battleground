@@ -43,7 +43,7 @@
         android:textStyle="italic"
         android:textColor="@color/red"
         android:textFontWeight="900"
-        android:textSize="15dp"
+        android:textSize="30dp"
         android:textAlignment="center"
         android:layout_gravity="center"
         android:background="#ffffff"

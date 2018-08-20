@@ -167,7 +167,10 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
         Random rand = new Random();
         int number = rand.nextInt(101);
         mResultText.setVisibility(View.VISIBLE);
+        mUser.getStatistics().setDamageDealt(mUser.getStrength());
+        mUser.getStatistics().setBattles(mUser.getStatistics().getBattles() + 1);
         if (number <= chanceToWinPercent){
+            mUser.getStatistics().setGoldWon(mUser.getStatistics().getGoldWon() + 5000);
             mBattle.setVisibility(View.GONE);
             mResultText.setText("YOU WON!");
         }
@@ -175,5 +178,8 @@ public class BattleFragment extends Fragment implements View.OnClickListener {
             mBattle.setVisibility(View.GONE);
             mResultText.setText("YOU LOST!");
         }
+        mFirebaseDatabase.getReference("Users")
+                .child(mAuth.getCurrentUser().getUid())
+                .setValue(mUser);
     }
 }

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.battleground.battleground.R;
 import com.battleground.battleground.fragments.BattleFragment;
 import com.battleground.battleground.models.Navigator;
+import com.battleground.battleground.models.SpecialCharacterView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class BattleActivity extends AppCompatActivity implements Navigator{
@@ -89,6 +90,10 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
                             break;
                         case R.id.nav_battle:
                             navigateToBattleActivity();
+                            break;
+                        case  R.id.nav_settings:
+                            Intent intent = new Intent(this, SpecialCharacterActivity.class);
+                            startActivity(intent);
                             break;
                     }
                     mDrawerLayout.closeDrawers();

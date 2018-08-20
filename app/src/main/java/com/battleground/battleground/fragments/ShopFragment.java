@@ -17,6 +17,7 @@ import com.battleground.battleground.R;
 import com.battleground.battleground.models.Navigator;
 import com.battleground.battleground.models.SliderAdapterSuperHeroes;
 import com.battleground.battleground.models.SliderAdapterSuperVillains;
+import com.battleground.battleground.models.SpecialCharacterView;
 import com.battleground.battleground.models.Team;
 import com.battleground.battleground.models.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -86,6 +87,7 @@ public class ShopFragment extends Fragment {
 
             }
         });
+
 
         return view;
     }

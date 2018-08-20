@@ -42,7 +42,8 @@
         <activity
             android:name=".activities.BattleActivity"
             android:label="@string/title_activity_battle"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.SpecialCharacterActivity"></activity>
     </application>
 
 </manifest>
