@@ -116,8 +116,7 @@ public class ShopActivity extends AppCompatActivity implements Navigator {
                             navigateToBattleActivity();
                             break;
                         case  R.id.nav_exit:
-                            Intent intent = new Intent(this, LoginActivity.class);
-                            startActivity(intent);
+                            navigateToLoginActivity();
                             break;
                     }
                     mDrawerLayout.closeDrawers();
