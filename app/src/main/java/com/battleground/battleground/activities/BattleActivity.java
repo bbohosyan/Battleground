@@ -91,8 +91,8 @@ public class BattleActivity extends AppCompatActivity implements Navigator{
                         case R.id.nav_battle:
                             navigateToBattleActivity();
                             break;
-                        case  R.id.nav_settings:
-                            Intent intent = new Intent(this, SpecialCharacterActivity.class);
+                        case  R.id.nav_exit:
+                            Intent intent = new Intent(this, LoginActivity.class);
                             startActivity(intent);
                             break;
                     }
